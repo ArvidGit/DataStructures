@@ -36,6 +36,11 @@ namespace GenericDataStructures
             GoUp();
         }
 
+        public bool IsEmpty()
+        {
+            return count == 0;
+        }
+
         public T RemoveFirst()
         {
             T returnItem = default(T);
