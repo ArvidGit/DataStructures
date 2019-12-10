@@ -43,9 +43,9 @@ namespace GenericDataStructures
             {
                 count--;
             }
-            if (count == 0)
+            else if (count == 0)
             {
-                return returnItem;
+                throw new Exception("Heap is empty");
             }
             returnItem = values[0];
             Swap(0, count);
