@@ -9,7 +9,7 @@ namespace GenericDataStructures
     //A simple binary search tree without self balancing
     public sealed class BST<T> where T : IComparable<T>
     {
-        Node baseNode;
+        private Node baseNode;
 
         public BST(T value)
         {
@@ -218,7 +218,7 @@ namespace GenericDataStructures
             }
         }
 
-        class Node
+        internal class Node
         {
             public Node leftChild;
             public Node rightChild;

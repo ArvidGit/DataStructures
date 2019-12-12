@@ -9,7 +9,7 @@ namespace GenericDataStructures
     // A Binary search tree that has a key for accessing the values
     public sealed class DictionaryBST<T, Q> where T : IComparable<T>
     {
-        Node baseNode;
+        private Node baseNode;
 
         public DictionaryBST(T Key, Q value)
         {
@@ -208,7 +208,7 @@ namespace GenericDataStructures
             }
         }
 
-        class Node
+        internal class Node
         {
             public Node leftChild;
             public Node rightChild;

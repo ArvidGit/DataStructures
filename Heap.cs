@@ -17,6 +17,7 @@ namespace GenericDataStructures
 
         public Heap(T first, int heapSize, bool maxHeap)
         {
+          
             values = new T[heapSize];
             count++;
             values[0] = first;
@@ -36,11 +37,6 @@ namespace GenericDataStructures
             GoUp();
         }
 
-        public bool IsEmpty()
-        {
-            return count == 0;
-        }
-
         public T RemoveFirst()
         {
             T returnItem = default(T);
@@ -48,9 +44,9 @@ namespace GenericDataStructures
             {
                 count--;
             }
-            else if (count == 0)
+            if (count == 0)
             {
-                throw new Exception("Heap is empty");
+                return returnItem;
             }
             returnItem = values[0];
             Swap(0, count);
