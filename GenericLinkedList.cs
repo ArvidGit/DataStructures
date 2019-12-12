@@ -213,7 +213,7 @@ namespace GenericDataStructures
 
         void PrintList(int i, GenericLinkedNode<T> node)
         {
-            if(i == Count)
+            if(i == Count-1)
             {
                 return;
             }

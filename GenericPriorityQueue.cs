@@ -6,16 +6,16 @@ using System.Threading.Tasks;
 
 namespace GenericDataStructures
 {
-    //A generic priority queue implemented through a Linked list
     public sealed class GenericPriorityQueue<T> where T: IComparable
     {
         public int Count { get; private set; } = 0;
 
-        // Can use System.Collections.Generic.LinkedList but wanted to try my own Linked list
+        // Can use System.Collections.Generic.LinkedList but wanted to try my own
         private GenericLinkedList<T> list = new GenericLinkedList<T>();
+
         public void Enqueue(T item)
         {
-            if(Count == 0)
+            if (Count == 0)
             {
                 list.AddFirst(item);
                 Count++;
@@ -23,11 +23,11 @@ namespace GenericDataStructures
             }
             GenericLinkedNode<T> currentNode = list.First;
             int index = 0;
-            while (index < Count)
+            while (index <= Count)
             {
-                if(item.CompareTo(currentNode.Value) < 0)
+                if (item.CompareTo(currentNode.Value) < 0)
                 {
-                    list.AddBefore(currentNode,item);
+                    list.AddBefore(currentNode, item);
                     Count++;
                     return;
                 }
@@ -35,7 +35,8 @@ namespace GenericDataStructures
                 currentNode = currentNode.NextNode;
             }
             list.AddLast(item);
-           
+            Count++;
+            
         }
 
         public T Dequeue()
