@@ -12,14 +12,13 @@ namespace GenericDataStructures
     public sealed class Heap<T> where T : IComparable
     {
         T[] values;
-        int count = 0;
+        public int Count { get; private set; } = 0;
         bool maxHeap;
 
         public Heap(T first, int heapSize, bool maxHeap)
         {
-          
             values = new T[heapSize];
-            count++;
+            Count++;
             values[0] = first;
             this.maxHeap = maxHeap;
         }
@@ -32,26 +31,46 @@ namespace GenericDataStructures
 
         public void Add(T element)
         {
-            values[count] = element;
-            count++;
+            values[Count] = element;
+            Count++;
             GoUp();
         }
 
         public T RemoveFirst()
         {
-            T returnItem = default(T);
-            if (count > 0)
+            if(Count == 0)
             {
-                count--;
+                return default(T);
             }
-            if (count == 0)
+            if (Count > 0)
             {
-                return returnItem;
+                Count--;
             }
-            returnItem = values[0];
-            Swap(0, count);
+            T returnItem = values[0];
+            Swap(0, Count);
             GoDown();
             return returnItem;
+        }
+
+        public bool Contains(T value)
+        {
+            for(int i = 0; i < Count; i++)
+            {
+                if (value.Equals(values[i]))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        public T GetBaseNode()
+        {
+            if(Count == 0)
+            {
+                throw new Exception("Heap is empty");
+            }
+            return values[0];
         }
 
         bool HasChildren(int index)
@@ -61,7 +80,7 @@ namespace GenericDataStructures
 
         void GoUp()
         {
-            int index = count - 1;
+            int index = Count - 1;
             int currentIndex = index;
             int parentIndex;
             while (true)
@@ -140,12 +159,12 @@ namespace GenericDataStructures
 
         bool HasRightChild(int index)
         {
-            return GetRightChildIndex(index) < count;
+            return GetRightChildIndex(index) < Count;
         }
 
         bool HasLeftChild(int index)
         {
-            return GetLeftChildIndex(index) < count;
+            return GetLeftChildIndex(index) < Count;
         }
 
         bool HasParent(int index)
@@ -170,7 +189,7 @@ namespace GenericDataStructures
 
         public void Print()
         {
-            for (int i = 0; i < count; i++)
+            for (int i = 0; i < Count; i++)
             {
                 Console.WriteLine(values[i]);
             }
