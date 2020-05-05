@@ -1,0 +1,13 @@
+C:\Users\Arvid\source\repos\DataStructures\DataStructures\bin\Debug\netcoreapp3.1\DataStructures.exe
+C:\Users\Arvid\source\repos\DataStructures\DataStructures\bin\Debug\netcoreapp3.1\DataStructures.deps.json
+C:\Users\Arvid\source\repos\DataStructures\DataStructures\bin\Debug\netcoreapp3.1\DataStructures.runtimeconfig.json
+C:\Users\Arvid\source\repos\DataStructures\DataStructures\bin\Debug\netcoreapp3.1\DataStructures.runtimeconfig.dev.json
+C:\Users\Arvid\source\repos\DataStructures\DataStructures\bin\Debug\netcoreapp3.1\DataStructures.dll
+C:\Users\Arvid\source\repos\DataStructures\DataStructures\bin\Debug\netcoreapp3.1\DataStructures.pdb
+C:\Users\Arvid\source\repos\DataStructures\DataStructures\obj\Debug\netcoreapp3.1\DataStructures.csprojAssemblyReference.cache
+C:\Users\Arvid\source\repos\DataStructures\DataStructures\obj\Debug\netcoreapp3.1\DataStructures.csproj.CoreCompileInputs.cache
+C:\Users\Arvid\source\repos\DataStructures\DataStructures\obj\Debug\netcoreapp3.1\DataStructures.AssemblyInfoInputs.cache
+C:\Users\Arvid\source\repos\DataStructures\DataStructures\obj\Debug\netcoreapp3.1\DataStructures.AssemblyInfo.cs
+C:\Users\Arvid\source\repos\DataStructures\DataStructures\obj\Debug\netcoreapp3.1\DataStructures.dll
+C:\Users\Arvid\source\repos\DataStructures\DataStructures\obj\Debug\netcoreapp3.1\DataStructures.pdb
+C:\Users\Arvid\source\repos\DataStructures\DataStructures\obj\Debug\netcoreapp3.1\DataStructures.genruntimeconfig.cache
