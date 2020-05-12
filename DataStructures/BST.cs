@@ -6,10 +6,12 @@ using System.Threading.Tasks;
 
 namespace DataStructures
 {
-    //A simple binary search tree without self balancing
+    //A simple binary search tree with basic self balancing
     public sealed class BST<T> where T : IComparable<T>
     {
         private Node baseNode;
+
+        public int Count { get; private set; }
 
         public BST(T value)
         {
@@ -32,6 +34,8 @@ namespace DataStructures
             {
                 Add(baseNode, newObj);
             }
+            Count++;
+            Rebalance();
         }
 
         void Add(Node parentNode, Node newNode)
@@ -64,12 +68,110 @@ namespace DataStructures
             }
         }
 
+        public void Rebalance()
+        {
+           
+            if(FindDeepestNode()-1 <= FindShallowestNode())
+            {
+                return;
+            }
+            GenericList<Node> list = new GenericList<Node>();
+            ToList(list, baseNode);
+
+            int middle = (list.Count-1) / 2;
+            baseNode = list[middle];
+            Rebalance(baseNode,list, 0, list.Count-1);
+
+
+        }
+
+        void Rebalance(Node currentNode,GenericList<Node> list, int start, int end)
+        {
+            if (currentNode == null)
+            {
+                return;
+            }
+            int middle = (start + end) / 2;
+            if (start <= middle - 1)
+            {
+                currentNode.leftChild = list[(start + middle - 1) / 2];
+                Rebalance(currentNode.leftChild, list, start, middle - 1);
+            }
+            else
+            {
+                currentNode.leftChild = null;
+            }
+            if (middle + 1 <= end)
+            {
+                currentNode.rightChild = list[(middle + 1 + end) / 2];
+                Rebalance(currentNode.rightChild, list, middle + 1, end);
+            }
+            else
+            {
+                currentNode.rightChild = null;
+            }
+     
+        }
+
+        void ToList(GenericList<Node> list, Node currentNode)
+        {
+            if(currentNode != null)
+            {
+                ToList(list, currentNode.leftChild);
+                list.Add(currentNode);
+                ToList(list, currentNode.rightChild);
+            }
+        }
+
+        public int FindShallowestNode()
+        {
+            int lowest = 1000000;
+
+            void ShallowestLevel(Node currentNode, int currentLevel = 0)
+            {
+                if (currentNode != null)
+                {
+                    ShallowestLevel(currentNode.leftChild, currentLevel + 1);
+                    ShallowestLevel(currentNode.rightChild, currentLevel + 1);
+                 
+                    if (currentLevel < lowest && !currentNode.HasBothChildren())
+                    {
+                        lowest = currentLevel;
+                    }
+                }
+            }
+            ShallowestLevel(baseNode);
+            return lowest;
+        }
+
+        public int FindDeepestNode()
+        {
+            int deepest = 0;
+
+            void DeepestLevel(Node currentNode, int currentLevel = 0)
+            {
+                if(currentNode != null)
+                {
+                    DeepestLevel(currentNode.leftChild, currentLevel + 1);
+                    DeepestLevel(currentNode.rightChild, currentLevel + 1);
+                    if(currentLevel > deepest)
+                    {
+                        deepest = currentLevel;
+                    }
+                 
+                }
+            }
+            DeepestLevel(baseNode);
+            return deepest;
+        }
+
         public void Delete(T key)
         {
             if (baseNode == null)
             {
                 throw new KeyNotFoundException("BST is empty");
             }
+            Count--;
             Delete(key, baseNode);
         }
 
@@ -237,6 +339,11 @@ namespace DataStructures
             public bool HasOneChild()
             {
                 return (leftChild == null && rightChild != null) || (leftChild != null && rightChild == null);
+            }
+
+            public bool HasBothChildren()
+            {
+                return leftChild != null && rightChild != null;
             }
 
             public bool IsRightChild(Node child)
